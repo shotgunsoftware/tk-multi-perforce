@@ -43,7 +43,7 @@ class ConnectionHandler(object):
         """
         try:
             p4_fw = sgtk.platform.get_framework("tk-framework-perforce")
-            p4_fw.connect()
+            p4_fw.connection.connect()
         except:
             self._app.log_exception("Failed to connect!")
             return
@@ -53,19 +53,10 @@ class ConnectionHandler(object):
         """
         try:
             p4_fw = sgtk.platform.get_framework("tk-framework-perforce")
-            p4_fw.connect_with_dlg()
+            p4_fw.connection.connect_with_dialog()
         except:
             self._app.log_exception("Failed to Open Connection dialog!")
-            return
-        
-        #        try:
-        #            p4_widgets = sgtk.platform.import_framework("tk-framework-perforce", "widgets")
-        #            open_form = self._app.engine.show_modal("Open Connection", self._app, p4_widgets.OpenConnectionForm)
-        #            print open_form
-        #        except:
-        #            self._app.log_exception("Failed to Open Connection dialog!")
-        #            return
-        
+            return        
         
         
         
