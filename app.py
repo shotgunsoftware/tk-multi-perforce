@@ -16,18 +16,21 @@ import os
 import sgtk
 from sgtk import TankError
 
-class PerforceConnect(sgtk.platform.Application):
+class MultiPerforce(sgtk.platform.Application):
 
     def init_app(self):
         """
-        Called as the application is being initialized
+        Called as the app is being initialized
         """
+        self.log_debug("%s: Initializing..." % self)
         
         # register commands:
         self.engine.register_command("Perforce Connection...", self.show_connection_dlg)
         
-        #self.engine.register_command("Perforce Check-Out", self.do_check_out)
-        #self.engine.register_command("Perforce Revert", self.do_revert)
+        # (TODO) - these commands aren't quite finished yet!
+        #self.engine.register_command("Check Out Scene...", self.check_out_scene)
+        #self.engine.register_command("Revert Changes...", self.revert_scene_changes)
+        #self.engine.register_command("Show Pending Publishes...", self.show_pending_publishes)
         
         # support connecting on startup:
         # Note, this runs every time the app is re-initialized (the engine is restarted).
@@ -36,31 +39,62 @@ class PerforceConnect(sgtk.platform.Application):
         if self.engine.has_ui:
             connect_on_startup = self.get_setting("connect_on_startup")
             if connect_on_startup:
-                self.connect_on_startup()
+                self.log_debug("Attempting to connect to Perforce...")
+                self.__connect_on_startup()
         
     def destroy_app(self):
-        self.log_debug("Destroying tk-multi-perforce")
+        """
+        Called when the app is being cleaned up
+        """
+        self.log_debug("%s: Destroying..." % self)
         
-    def connect_on_startup(self):
-        """
-        """
-        tk_multi_perforce = self.import_module("tk_multi_perforce")
-        tk_multi_perforce.ConnectionHandler.connect(self)
+        self.log_debug("Destroying tk-multi-perforce")
         
     def show_connection_dlg(self):
         """
-        
+        Show the Perforce connection details dialog.
         """
         tk_multi_perforce = self.import_module("tk_multi_perforce")
-        tk_multi_perforce.ConnectionHandler.open_connection(self)
+        tk_multi_perforce.open_connection(self)
     
-    def do_check_out(self):
+    def check_out_scene(self):
         """
+        Check out the current scene from Perforce.
         """
-        pass
+        tk_multi_perforce = self.import_module("tk_multi_perforce")
+        tk_multi_perforce.check_out_current_scene()
     
-    def do_revert(self):
+    def revert_scene_changes(self):
         """
+        Discard any changes to the current scene and revert. 
         """
-        pass
+        tk_multi_perforce = self.import_module("tk_multi_perforce")
+        tk_multi_perforce.revert_scene_changes()
+
+    def show_pending_publishes(self):
+        """
+        Show all publishes that are pending in Perforce.
+        """
+        tk_multi_perforce = self.import_module("tk_multi_perforce")
+        tk_multi_perforce.show_pending_publishes()
+
+    def __connect_on_startup(self):
+        """
+        Called when the engine starts to ensure that a connection to Perforce
+        can be established.  Prompts the user for password/connection details
+        if needed
+        """
+        tk_multi_perforce = self.import_module("tk_multi_perforce")
+        tk_multi_perforce.connect(self)
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             

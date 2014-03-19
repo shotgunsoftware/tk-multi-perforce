@@ -19,13 +19,24 @@ configuration:
                      start-up and present the connection/password dialog to the
                      uesr if needed.  
         default_value: True
+        
+    hook_scene_operation:
+        type: hook
+        parameters: [operation, file_path]
+        default_value: "scene_operation_{engine_name}"
+        description: All the application specific scene operations (open, save etc) that 
+                     the app needs to carry out are collected in this hook.
+        
             
 # the Shotgun fields that this app needs in order to operate correctly
 requires_shotgun_fields:
 
 # More verbose description of this item 
 display_name: "Perforce"
-description: "<TODO>"
+description: "This app provides common Perforce commands such as check-out and revert of the current
+              scene, directly from the Shotgun menu.  Additionally, it also handles Perforce login
+              on start-up and provides a command to help manage any pending publishes that are yet
+              to be submitted to Perforce"
               
 # Required minimum versions for this item to run
 requires_shotgun_version:
@@ -37,5 +48,5 @@ supported_engines:
 
 # the frameworks required to run this app
 frameworks:
-    - {"name": "tk-framework-perforce", "version": "v0.0.9"}
+    - {"name": "tk-framework-perforce", "version": "v0.x.x"}
     

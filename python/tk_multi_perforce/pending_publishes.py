@@ -8,7 +8,19 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-from .connection import connect, open_connection
-from .operations import check_out_current_scene, revert_scene_changes
-from .pending_publishes import show_pending_publishes
+"""
+Handle displaying the pending publishes to the user
+"""
+
+import sgtk
+
+def show_pending_publishes(app):
+    """
+    Flow:
+    - show the dialog, let user select and modify
+    - on each action, perform the action and then refresh the dialog
+    - user can manually close (x or esc) when they are done
+    
+    """
+    pass
 
