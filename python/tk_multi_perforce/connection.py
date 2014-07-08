@@ -27,7 +27,7 @@ def connect(app):
         app.log_exception("Failed to connect!")
         return
 
-def open_connection(self):
+def open_connection(app):
     """
     Show the Perforce connection dialog
     """
