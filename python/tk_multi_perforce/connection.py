@@ -9,8 +9,8 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 """
-Handle connecting to Perforce and showing the connection dialog from the Shotgun
-menu
+Handle connecting to Perforce and showing the connection dialog from the
+Flow Production Tracking menu
 """
 
 import sgtk

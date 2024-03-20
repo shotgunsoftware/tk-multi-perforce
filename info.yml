@@ -28,15 +28,15 @@ configuration:
                      the app needs to carry out are collected in this hook.
         
             
-# the Shotgun fields that this app needs in order to operate correctly
+# the Flow Production Tracking fields that this app needs in order to operate correctly
 requires_shotgun_fields:
 
 # More verbose description of this item 
 display_name: "Perforce"
 description: "This app provides common Perforce commands such as check-out and revert of the current
-              scene, directly from the Shotgun menu.  Additionally, it also handles Perforce login
-              on start-up and provides a command to help manage any pending publishes that are yet
-              to be submitted to Perforce"
+              scene, directly from the Flow Production Tracking menu.  Additionally, it also handles
+              Perforce login on start-up and provides a command to help manage any pending publishes
+              that are yet to be submitted to Perforce"
               
 # Required minimum versions for this item to run
 requires_shotgun_version:
